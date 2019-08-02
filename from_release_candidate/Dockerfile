@@ -55,4 +55,4 @@ ENV PATH=/home/superset/superset/bin:$PATH \
     PYTHONPATH=/home/superset/superset/:$PYTHONPATH
 COPY from_tarball_entrypoint.sh /entrypoint.sh
 EXPOSE 8088
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["sh", "/entrypoint.sh"]
