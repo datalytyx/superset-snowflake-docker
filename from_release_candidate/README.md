@@ -2,7 +2,7 @@
 
 To make a working build given a tarball (release candidate), see https://github.com/apache/incubator-superset/releases for versions
 ```bash
-# Building a docker from a tarball
+# Building a docker from a rc / specific version
 VERSION=0.33.0rc1 && \
 docker build -t apache-superset:$VERSION -f Dockerfile . --build-arg VERSION=$VERSION
 
