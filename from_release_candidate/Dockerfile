@@ -53,6 +53,6 @@ RUN pip install -e . \
 
 ENV PATH=/home/superset/superset/bin:$PATH \
     PYTHONPATH=/home/superset/superset/:$PYTHONPATH
-COPY entrypoint.sh /entrypoint.sh
+COPY from_tarball_entrypoint.sh /entrypoint.sh
 EXPOSE 8088
 ENTRYPOINT ["/entrypoint.sh"]
