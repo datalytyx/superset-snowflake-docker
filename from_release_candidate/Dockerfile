@@ -30,7 +30,7 @@ ARG VERSION
 
 RUN svn co https://dist.apache.org/repos/dist/dev/incubator/superset/$VERSION ./
 RUN tar -xvf *.tar.gz
-WORKDIR apache-superset-$VERSION
+WORKDIR apache-superset-incubating-$VERSION
 
 RUN cd superset/assets \
     && npm ci \
@@ -38,20 +38,21 @@ RUN cd superset/assets \
     && rm -rf node_modules
 
 
-WORKDIR /home/superset/apache-superset-$VERSION
+WORKDIR /home/superset/apache-superset-incubating-$VERSION
 RUN pip install --upgrade setuptools pip \
     && pip install -r requirements.txt -r requirements-dev.txt \
     && pip install -e . \
     && rm -rf /root/.cache/pip
+    
+RUN pip install snowflake-sqlalchemy
 
 RUN fabmanager babel-compile --target superset/translations
 
 RUN pip install -e . \
     && rm -rf /root/.cache/pip
 
-RUN pip install sqlalchemy
-
 ENV PATH=/home/superset/superset/bin:$PATH \
     PYTHONPATH=/home/superset/superset/:$PYTHONPATH
-COPY entrypoint.sh /entrypoint.sh
+COPY from_tarball_entrypoint.sh /entrypoint.sh
+EXPOSE 8088
 ENTRYPOINT ["/entrypoint.sh"]
