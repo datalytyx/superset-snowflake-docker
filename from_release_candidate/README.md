@@ -1,6 +1,6 @@
 # Apache Releases
 
-To make a working build given a release candidate, see https://github.com/apache/incubator-superset/releases for versions
+To make a working build given a release candidate, see https://github.com/apache/incubator-superset/releases or https://dist.apache.org/repos/dist/dev/incubator/superset/ for versions
 ```bash
 # Building a docker from a rc / specific version
 VERSION=0.33.0rc1 && \
